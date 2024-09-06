@@ -123,12 +123,13 @@ window.addEventListener('message', (event) => {
   // 判断消息来源是否为父窗口的地址
   if (event.source === window.parent) {
     // 处理接收到的消息
-    parentObj.tplId = event.data.tplId;
-    parentObj.token = event.data.token;
-    parentObj.designMode = event.data.designMode;
-    parentObj.token = event.data.token;
-    parentObj.searchData = event.data.searchData;
-    mainStore.apiHeaders = event.data.apiHeaders;
+    let obj = JSON.parse(event.data)
+    parentObj.tplId = obj.tplId;
+    parentObj.token = obj.token;
+    parentObj.designMode = obj.designMode;
+    parentObj.token = obj.token;
+    parentObj.searchData = obj.searchData;
+    mainStore.apiHeaders = obj.apiHeaders;
     getTplSettings();
   }
 })
